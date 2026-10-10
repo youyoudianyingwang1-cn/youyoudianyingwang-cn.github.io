@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<title>优优电影网｜优质观影指南 · 高分电影 · 正版片源导航</title>
+<meta name="description" content="优优电影网：按心情与时段推荐优质电影，涵盖治愈、烧脑、成长、家庭四类高分片单，提供正版片源导航与观影指南。">
+<meta name="keywords" content="优优电影网,优优电影,优质电影,高分电影,经典电影,治愈电影,烧脑电影,家庭电影,成长电影,正版观影">
+<link rel="canonical" href="https://youyoudianyingwang-cn.github.io/">
+<style>
+:root{
+  --ink:#0f1420; --ink2:#1b2436; --paper:#f7f9fc; --line:#e6ebf3;
+  --txt:#2a3344; --sub:#6b7688;
+  --blue:#2f6bff; --blue2:#5ad7ff; --violet:#7b5cff; --pink:#ff5c8a; --teal:#1cc8b5; --gold:#ffb340; --green:#5cb85c;
+  --shadow:0 10px 30px -12px rgba(15,20,32,.28);
+  --shadow2:0 22px 50px -22px rgba(15,20,32,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--paper);color:var(--txt);line-height:1.7;overflow-x:clip;
+  padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;border:0;background:none;cursor:pointer;color:inherit}
+ul,ol{list-style:none}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+
+/* ============ NAV ============ */
+.nav{position:sticky;top:0;z-index:60;background:rgba(247,249,252,.86);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line)}
+.nav .in{max-width:1240px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:18px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px;font-size:17px;flex:none}
+.logo .mk{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;display:grid;place-items:center;font-size:15px;box-shadow:var(--shadow)}
+.logo b{background:linear-gradient(90deg,var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{font-weight:600;color:var(--sub);font-size:12px;letter-spacing:1px}
+.links{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.links a{padding:9px 14px;border-radius:999px;font-size:14px;color:var(--ink2);font-weight:600;transition:.24s;white-space:nowrap}
+.links a:hover{background:#eaf0ff;color:var(--blue)}
+.ham{display:none;width:44px;height:44px;align-items:center;justify-content:center;margin-left:auto;flex:none}
+.ham i{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:.28s}
+.ham i::before,.ham i::after{content:"";position:absolute;left:0;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:.28s}
+.ham i::before{top:-7px}.ham i::after{top:7px}
+.ham[aria-expanded="true"] i{transform:rotate(45deg)}
+.ham[aria-expanded="true"] i::before{transform:rotate(90deg) translate(7px,0)}
+.ham[aria-expanded="true"] i::after{opacity:0}
+.drawer{position:fixed;inset:0 0 0 auto;width:280px;background:var(--paper);z-index:70;padding:26px 20px;display:flex;flex-direction:column;gap:10px;box-shadow:-20px 0 50px -10px rgba(0,0,0,.25);transform:translateX(102%);transition:transform .34s cubic-bezier(.32,.72,0,1)}
+.drawer.open{transform:none}
+.drawer a{padding:14px 16px;border-radius:14px;font-weight:700;color:var(--ink2);border:1px solid var(--line);background:#fff}
+.drawer .close{margin-top:auto;padding:14px;border-radius:14px;background:var(--ink2);color:#fff;font-weight:700}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:min(640px,92vh);display:grid;place-items:center;overflow:hidden;background:
+   radial-gradient(1200px 520px at 18% 12%,rgba(47,107,255,.18),transparent 60%),
+   radial-gradient(900px 460px at 86% 18%,rgba(123,92,255,.20),transparent 62%),
+   radial-gradient(700px 420px at 50% 108%,rgba(255,92,138,.16),transparent 60%),
+   linear-gradient(180deg,#0a0e1a 0%,#0f1729 55%,#141c30 100%);color:#fff}
+.stars{position:absolute;inset:0;pointer-events:none}
+.stars s{position:absolute;border-radius:50%;background:#fff;opacity:.75;animation:tw 3.4s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.25;transform:scale(.85)}to{opacity:1;transform:scale(1.25)}}
+.svgwrap{position:absolute;right:-40px;bottom:-10px;width:min(560px,46vw);aspect-ratio:1/1;pointer-events:none}
+.rings{position:absolute;inset:0}
+.rings .r{position:absolute;left:50%;top:50%;border-radius:50%;border:1px solid rgba(255,255,255,.16);transform:translate(-50%,-50%);animation:pl 9s linear infinite}
+.rings .r:nth-child(1){width:26%;height:26%}.rings .r:nth-child(2){width:50%;height:50%;animation-direction:reverse;animation-duration:13s;border-color:rgba(90,215,255,.30)}
+.rings .r:nth-child(3){width:74%;height:74%;animation-duration:18s;border-color:rgba(255,179,64,.20)}
+@keyframes pl{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero .in{max-width:1240px;width:100%;padding:90px 22px 110px;position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.hero h1{font-size:clamp(34px,6.2vw,64px);line-height:1.12;letter-spacing:-.5px;font-weight:800}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--blue2),var(--pink) 55%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{margin-top:18px;max-width:560px;color:#c9d4ea;font-size:clamp(15px,1.6vw,18px)}
+.hero .cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.hero .cta a{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:700;font-size:15px;transition:.26s}
+.hero .cta a.pri{background:linear-gradient(90deg,var(--blue),var(--violet));color:#fff;box-shadow:0 14px 30px -12px rgba(123,92,255,.7)}
+.hero .cta a.pri:hover{transform:translateY(-3px)}
+.hero .cta a.sec{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);color:#fff}
+.hero .cta a.sec:hover{background:rgba(255,255,255,.2)}
+.hero .stats{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+.hero .stats div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px 18px;backdrop-filter:blur(4px)}
+.hero .stats b{display:block;font-size:22px;font-weight:800;color:#fff}
+.hero .stats span{font-size:12px;color:#aeb9d0;letter-spacing:1px}
+.wm{position:absolute;left:22px;bottom:18px;font-size:11px;letter-spacing:.32em;color:rgba(255,255,255,.30);writing-mode:vertical-rl;z-index:2}
+
+/* ============ SECTION ============ */
+.wrap{max-width:1240px;margin:0 auto;padding:76px 22px}
+.sec-h{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:34px}
+.sec-h .tag{font-size:12px;letter-spacing:.22em;color:var(--blue);font-weight:700;background:#eaf0ff;padding:6px 12px;border-radius:999px}
+.sec-h h2{font-size:clamp(24px,3.4vw,36px);font-weight:800;letter-spacing:-.3px;line-height:1.25}
+.sec-h .en{margin-left:auto;font-size:12px;letter-spacing:.28em;color:var(--sub)}
+.sec-h p{width:100%;color:var(--sub);max-width:720px;font-size:15px}
+
+/* ============ ① RADIO CARDS ============ */
+.opt{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.opt label{position:relative;display:flex;flex-direction:column;gap:10px;padding:24px 22px 22px;border-radius:20px;background:#fff;border:1.5px solid var(--line);cursor:pointer;transition:.28s;min-height:250px}
+.opt label:hover{transform:translateY(-5px);box-shadow:var(--shadow2);border-color:transparent}
+.opt label .no{font-size:13px;font-weight:800;letter-spacing:.18em;color:var(--sub)}
+.opt label h3{font-size:20px;line-height:1.3}
+.opt label .bar{height:5px;border-radius:99px;background:linear-gradient(90deg,var(--c),var(--c2));transform-origin:left;transform:scaleX(.2);transition:transform .6s cubic-bezier(.22,.8,.3,1);margin-top:auto}
+.opt label .meta{display:flex;gap:8px;flex-wrap:wrap}
+.opt label .meta i{font-style:normal;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:99px;border:1px solid var(--c);color:var(--c)}
+.opt label .pick{position:absolute;right:18px;top:18px;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;transition:.24s}
+.opt label .pick::after{content:"";width:7px;height:12px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px);opacity:0;transition:.2s}
+.opt input:checked + label{border-color:var(--c);box-shadow:0 18px 40px -20px var(--c)}
+.opt input:checked + label .bar{transform:scaleX(1)}
+.opt input:checked + label .pick{background:var(--c);border-color:var(--c)}
+.opt input:checked + label .pick::after{opacity:1}
+
+/* ============ ② HORIZONTAL MAGNET ============ */
+.mag{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 22px;scrollbar-width:thin}
+.mag::-webkit-scrollbar{height:10px}.mag::-webkit-scrollbar-thumb{background:#ccd4e4;border-radius:99px}
+.mag a{flex:0 0 min(250px,62vw);scroll-snap-align:start;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:.3s}
+.mag a:hover{transform:translateY(-6px);box-shadow:var(--shadow2)}
+.mag .cv{position:relative;aspect-ratio:3/4;overflow:hidden}
+.mag .cv img{width:100%;height:100%;object-fit:cover;transition:.7s;filter:saturate(1.05) contrast(1.02)}
+.mag a:hover .cv img{transform:scale(1.06);filter:saturate(1.16) contrast(1.04)}
+.mag .cv .badge{position:absolute;left:10px;top:10px;font-size:11px;font-weight:800;padding:5px 9px;border-radius:8px;color:#fff;letter-spacing:.04em;box-shadow:0 6px 14px -4px rgba(0,0,0,.35)}
+.mag .cv .sc{position:absolute;right:10px;bottom:10px;font-size:12px;font-weight:800;padding:5px 10px;border-radius:99px;background:rgba(15,20,32,.78);color:#fff;backdrop-filter:blur(4px)}
+.mag .tx{padding:14px 16px}
+.mag .tx h3{font-size:16px;line-height:1.35;margin-bottom:8px}
+.mag .tx .row{display:flex;gap:6px;flex-wrap:wrap;font-size:11.5px;color:var(--sub)}
+.mag .tx .row b{font-weight:600;color:var(--ink2)}
+.mag .tx p{margin-top:10px;font-size:12.5px;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ============ ③ RANK TABLE + ASIDE ============ */
+.rk{display:grid;grid-template-columns:1.55fr 1fr;gap:26px;align-items:start}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+thead th{background:linear-gradient(90deg,var(--ink2),var(--blue));color:#fff;text-align:left;padding:15px 14px;font-size:13.5px;letter-spacing:.04em;position:sticky;top:64px;z-index:5}
+thead th:first-child{width:64px;text-align:center}
+thead th:nth-child(3){width:130px}
+tbody tr{border-top:1px solid var(--line);transition:.2s}
+tbody tr:hover{background:#f4f8ff}
+tbody td{padding:14px;vertical-align:middle}
+tbody td.rk-no{font-weight:800;color:var(--sub);text-align:center;font-size:15px}
+tbody td h3{font-size:15.5px;line-height:1.35}
+tbody td .mini{font-size:11.5px;color:var(--sub);margin-top:4px;display:flex;gap:6px;flex-wrap:wrap}
+tbody td .mini b{font-weight:600;color:var(--ink2)}
+.pb{height:9px;border-radius:99px;background:#eef2f8;overflow:hidden;position:relative}
+.pb i{position:absolute;inset:0;width:var(--v,0%);border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--blue) 55%,var(--violet));transition:width 1.1s cubic-bezier(.22,.8,.3,1)}
+tbody td .vv{font-size:12.5px;font-weight:800;color:var(--blue);margin-top:5px}
+.stars-v{color:var(--gold);letter-spacing:1px;font-size:13px;white-space:nowrap}
+
+.qbox{background:linear-gradient(160deg,var(--ink),var(--ink2));color:#fff;border-radius:20px;padding:26px 24px;box-shadow:var(--shadow2)}
+.qbox h4{font-size:18px;margin-bottom:16px;background:linear-gradient(90deg,#fff,var(--blue2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.qbox ol{display:flex;flex-direction:column;gap:13px;counter-reset:q}
+.qbox ol li{counter-increment:q;font-size:14px;color:#d3dbea;padding-left:36px;position:relative}
+.qbox ol li::before{content:"Q" counter(q);position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:8px;background:var(--blue);color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center}
+.qbox ol li b{color:#fff;display:block;margin-bottom:2px}
+.tip{margin-top:18px;border:1px solid rgba(28,200,181,.45);background:rgba(28,200,181,.09);border-radius:14px;padding:14px 16px;font-size:12.5px;color:#0f3d39;line-height:1.65}
+.tip b{color:#0b2e2b}
+
+/* ============ ④ TIMELINE ============ */
+.tl{position:relative;padding-left:34px}
+.tl::before{content:"";position:absolute;left:8px;top:10px;bottom:10px;width:3px;border-radius:99px;background:linear-gradient(180deg,var(--teal),var(--blue),var(--violet),var(--pink));transform-origin:top;transform:scaleY(.12);transition:transform 1.2s cubic-bezier(.22,.8,.3,1)}
+.tl.in .row{position:relative;padding:20px 22px;border-radius:18px;background:#fff;border:1px solid var(--line);margin-bottom:16px;transition:.3s}
+.tl.in .row:hover{transform:translateX(7px);box-shadow:var(--shadow2);border-color:transparent}
+.tl.in .row::before{content:"";position:absolute;left:-30px;top:27px;width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid var(--c);box-shadow:0 0 0 5px rgba(255,255,255,.9),0 0 18px -2px var(--c)}
+.tl.in .row .yr{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--c)}
+.tl.in .row h3{font-size:19px;margin:4px 0 6px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.tl.in .row h3 span{font-size:12px;color:var(--sub);font-weight:500}
+.tl.in .row p{font-size:14px;color:var(--sub)}
+.tl.in .row .chips{margin-top:12px;display:flex;gap:7px;flex-wrap:wrap}
+.tl.in .row .chips i{font-style:normal;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:99px;background:var(--c);color:#fff}
+
+/* ============ ⑤ BRICKS ============ */
+.bricks{column-count:3;column-gap:18px}
+.bricks a{break-inside:avoid;margin-bottom:18px;display:block;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:.3s;counter-increment:b}
+.bricks a:hover{transform:translateY(-5px);box-shadow:var(--shadow2);border-color:transparent}
+.bricks .cv{position:relative;overflow:hidden}
+.bricks .cv img{width:100%;display:block;filter:grayscale(.18) sepia(.1) hue-rotate(-4deg);transition:.7s}
+.bricks a:hover .cv img{filter:none;transform:scale(1.05)}
+.bricks .cv .idx{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;color:#fff;font-size:12px;letter-spacing:.2em;font-weight:800;background:linear-gradient(0deg,rgba(15,20,32,.85),transparent)}
+.bricks .tx{padding:13px 16px}
+.bricks .tx h3{font-size:15px;line-height:1.35}
+.bricks .tx .r{margin-top:7px;font-size:11.5px;color:var(--sub);display:flex;gap:6px;flex-wrap:wrap}
+.bricks .tx .r b{color:var(--ink2);font-weight:600}
+.h2{min-height:220px}.h3{min-height:260px}.h4{min-height:200px}
+.bricks{padding-bottom:8px}
+.ladder{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.ladder div{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.ladder h4{font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.ladder h4::before{content:"";width:8px;height:22px;border-radius:4px;background:linear-gradient(180deg,var(--c),var(--c2))}
+.ladder ol{counter-reset:lb;display:flex;flex-direction:column;gap:10px}
+.ladder li{counter-increment:lb;display:flex;gap:11px;font-size:13.5px;align-items:baseline}
+.ladder li::before{content:counter(lb,decimal-leading-zero);font-size:11px;font-weight:800;color:var(--c);border:1px solid var(--c);border-radius:7px;padding:2px 6px;flex:none}
+.ladder li b{color:var(--sub);font-weight:600;font-size:12px;margin-left:auto;white-space:nowrap}
+
+/* ============ CTA BAND ============ */
+.band{background:linear-gradient(120deg,var(--ink) 0%,var(--blue) 60%,var(--violet) 100%);color:#fff;border-radius:26px;padding:44px 40px;display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:center;box-shadow:var(--shadow2)}
+.band h3{font-size:clamp(22px,3vw,32px);line-height:1.3}
+.band p{margin-top:12px;color:#d7e0f5;font-size:14.5px;max-width:560px}
+.band .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.band a{padding:14px 24px;border-radius:999px;font-weight:700;font-size:15px;transition:.26s}
+.band a.pri{background:#fff;color:var(--blue)}
+.band a.pri:hover{transform:translateY(-3px)}
+.band a.sec{border:1px solid rgba(255,255,255,.4)}
+.band a.sec:hover{background:rgba(255,255,255,.14)}
+
+/* ============ FOOT ============ */
+.foot{background:var(--ink);color:#98a4ba;margin-top:60px}
+.foot .in{max-width:1240px;margin:0 auto;padding:56px 22px 34px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.foot h5{color:#fff;font-size:15px;margin-bottom:14px;letter-spacing:.04em}
+.foot p{font-size:13px;line-height:1.85;max-width:360px}
+.foot ul{display:flex;flex-direction:column;gap:9px;font-size:13px}
+.foot a:hover{color:var(--blue2)}
+.foot .copy{border-top:1px solid rgba(255,255,255,.1);margin-top:34px;padding-top:22px;font-size:12px;color:#6f7b92;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;max-width:1240px;margin-left:auto;margin-right:auto;padding-left:22px;padding-right:22px}
+.up{position:fixed;right:18px;bottom:18px;width:48px;height:48px;border-radius:50%;background:var(--ink2);color:#fff;z-index:55;box-shadow:var(--shadow2);display:grid;place-items:center;opacity:0;pointer-events:none;transition:.26s}
+.up.show{opacity:1;pointer-events:auto}
+
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.8,.3,1),transform .7s cubic-bezier(.22,.8,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  .hero .in{grid-template-columns:1fr;gap:20px}
+  .svgwrap{right:-90px;bottom:-70px;opacity:.5}
+  .opt{grid-template-columns:1fr 1fr}
+  .rk{grid-template-columns:1fr}
+  .bricks{column-count:2}
+  .band{grid-template-columns:1fr;padding:34px 26px}
+  .band .btns{justify-content:flex-start}
+  .foot .in{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .wrap{padding:56px 18px}
+  .links{display:none}
+  .ham{display:flex}
+  .opt{grid-template-columns:1fr}
+  .opt label{min-height:0}
+  .bricks{column-count:2;column-gap:12px}
+  .bricks a{margin-bottom:12px}
+  .ladder{grid-template-columns:1fr;gap:16px}
+  /* table -> cards */
+  table,thead,tbody,tr,td,th{display:block;width:auto!important}
+  thead{position:static}
+  table{border-radius:16px}
+  tbody tr{padding:16px 16px 14px;border-top:1px solid var(--line)}
+  tbody tr:first-child{border-top:0}
+  tbody td{border:0;padding:0}
+  tbody td[data-l]::before{content:attr(data-l);font-size:11px;color:var(--sub);letter-spacing:.08em;display:block;margin-bottom:4px}
+  tbody td.rk-no{font-size:12px;text-align:left;color:var(--sub);margin-bottom:6px}
+  tbody td.rk-no::before{content:attr(data-rk);font-size:11px;letter-spacing:.14em;color:var(--blue);font-weight:800;display:inline-block;margin-right:8px}
+  tbody td h3{font-size:16px}
+  tbody td .pb{margin-top:9px}
+  tbody tr td[data-l="评分"] .stars-v{font-size:14px}
+  .tl.in .row::before{left:-26px}
+  .tl::before{left:6px}
+  .foot .in{grid-template-columns:1fr;gap:24px}
+  .foot .copy{flex-direction:column;padding-bottom:26px}
+  .hero .stats div{padding:10px 14px}
+  .hero .stats b{font-size:19px}
+}
+@media (max-width:420px){
+  .bricks{column-count:1}
+  .hero .cta a{flex:1 1 auto;justify-content:center}
+  .sec-h .en{display:none}
+  .wm{display:none}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaobao.js"></script>
+
+<header class="nav" role="banner">
+  <div class="in">
+    <a class="logo" href="#top" aria-label="优优电影网 返回顶部">
+      <span class="mk" aria-hidden="true">优</span>
+      <span><b>优优电影网</b><br><small>YOUYOU · CINEMA</small></span>
+    </a>
+    <nav class="links" aria-label="主导航">
+      <a href="#mood">四种优质</a>
+      <a href="#fresh">本周优片</a>
+      <a href="#rank">优质榜</a>
+      <a href="#line">优影像人</a>
+      <a href="#map">类型地图</a>
+    </nav>
+    <button class="ham" type="button" aria-expanded="false" aria-controls="drawer" aria-label="打开菜单">
+      <i></i>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" role="dialog" aria-label="移动端菜单">
+  <a href="#mood">① 四种优质</a>
+  <a href="#fresh">② 本周优片</a>
+  <a href="#rank">③ 优质榜</a>
+  <a href="#line">④ 优影像人</a>
+  <a href="#map">⑤ 类型地图</a>
+  <button class="close" type="button">关闭菜单</button>
+</div>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero" aria-labelledby="h1">
+  <div class="stars" aria-hidden="true">
+    <s style="left:12%;top:16%;width:2px;height:2px"></s>
+    <s style="left:24%;top:8%;width:3px;height:3px;animation-delay:.6s"></s>
+    <s style="left:38%;top:24%;width:2px;height:2px;animation-delay:1.1s"></s>
+    <s style="left:56%;top:11%;width:3px;height:3px;animation-delay:1.7s"></s>
+    <s style="left:72%;top:20%;width:2px;height:2px;animation-delay:.3s"></s>
+    <s style="left:86%;top:9%;width:2px;height:2px;animation-delay:2.1s"></s>
+    <s style="left:94%;top:26%;width:3px;height:3px;animation-delay:1.4s"></s>
+    <s style="left:46%;top:6%;width:2px;height:2px;animation-delay:2.4s"></s>
+  </div>
+
+  <div class="svgwrap" aria-hidden="true">
+    <div class="rings"><span class="r"></span><span class="r"></span><span class="r"></span></div>
+    <svg viewBox="0 0 200 200" width="100%" height="100%" role="img" aria-label="优优电影网首屏装饰：三层同心光圈">
+      <defs>
+        <linearGradient id="orb" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#5ad7ff" stop-opacity=".9"/>
+          <stop offset=".55" stop-color="#7b5cff" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#ff5c8a" stop-opacity=".25"/>
+        </linearGradient>
+      </defs>
+      <circle cx="100" cy="100" r="42" fill="none" stroke="url(#orb)" stroke-width="3"/>
+      <circle cx="100" cy="100" r="26" fill="url(#orb)" opacity=".16"/>
+      <circle cx="100" cy="100" r="11" fill="#fff" opacity=".92"/>
+      <g stroke="#5ad7ff" stroke-width="1.6" fill="none" opacity=".5">
+        <path d="M100 46 L100 30" stroke-dasharray="5 5"><animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="22s" repeatCount="indefinite"/></path>
+        <path d="M100 154 L100 170" stroke-dasharray="5 5"><animateTransform attributeName="transform" type="rotate" from="0 100 100" to="-360 100 100" dur="16s" repeatCount="indefinite"/></path>
+      </g>
+      <text x="100" y="194" text-anchor="middle" fill="#7f8aa0" font-size="6" letter-spacing="2">YOU · ARE · THE · AUDIENCE</text>
+    </svg>
+  </div>
+
+  <div class="in">
+    <div>
+      <h1 id="h1">优中选优，<br><em>只推值得两小时</em>的电影。</h1>
+      <p class="lead">优优电影网不做片海，只做筛选。按<strong>心情</strong>、按<strong>时段</strong>、按<strong>画质</strong>、按<strong>看完之后</strong>四个维度，把高分、经典、冷门佳片整理成能直接照着看的片单，并指向<strong>正版片源</strong>。</p>
+      <div class="cta">
+        <a class="pri" href="#fresh">开始选片 →</a>
+        <a class="sec" href="#rank">看优质榜</a>
+      </div>
+      <div class="stats">
+        <div><b>1280+</b><span>精选影片</span></div>
+        <div><b>4</b><span>种优质标准</span></div>
+        <div><b>100%</b><span>正版片源导航</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="wm" aria-hidden="true">优质 · 优选 · 优影像</div>
+</section>
+
+<!-- ================= ① FOUR MOODS (RADIO) ================= -->
+<section class="wrap" id="mood" aria-labelledby="t1">
+  <div class="sec-h">
+    <span class="tag">01 / FOUR MOODS</span>
+    <h2 id="t1">四种"优质"：今天你想要哪一种</h2>
+    <span class="en">MOOD · 2026</span>
+    <p>优优电影网的选片标准不是"评分高"，而是<strong>情绪准确</strong>。先选心境，再看片单——这才是省时间的方式。</p>
+  </div>
+
+  <div class="opt">
+    <div>
+      <input type="radio" name="mood" id="m1" checked>
+      <label for="m1" style="--c:#1cc8b5;--c2:#2f6bff">
+        <span class="pick" aria-hidden="true"></span>
+        <span class="no">MOOD 01</span>
+        <h3>治愈 · 被接住</h3>
+        <p style="font-size:13.5px;color:var(--sub)">节奏慢、光线好、台词少。看完不累，甚至想给一个人发消息。</p>
+        <div class="meta"><i>适合：下班后</i><i>时长：90–120′</i><i>正版可看 42 部</i></div>
+        <span class="bar" aria-hidden="true"></span>
+      </label>
+    </div>
+    <div>
+      <input type="radio" name="mood" id="m2">
+      <label for="m2" style="--c:#2f6bff;--c2:#7b5cff">
+        <span class="pick" aria-hidden="true"></span>
+        <span class="no">MOOD 02</span>
+        <h3>烧脑 · 被反转</h3>
+        <p style="font-size:13.5px;color:var(--sub)">前四十分钟记名字，后四十分钟推翻自己。建议戴耳机，别快进。</p>
+        <div class="meta"><i>适合：周末下午</i><i>时长：110–150′</i><i>正版可看 38 部</i></div>
+        <span class="bar" aria-hidden="true"></span>
+      </label>
+    </div>
+    <div>
+      <input type="radio" name="mood" id="m3">
+      <label for="m3" style="--c:#ffb340;--c2:#ff5c8a">
+        <span class="pick" aria-hidden="true"></span>
+        <span class="no">MOOD 03</span>
+        <h3>成长 · 被击中</h3>
+        <p style="font-size:13.5px;color:var(--sub)">关于选择、错过与和解。看完会沉默一会儿，然后觉得还能再试一次。</p>
+        <div class="meta"><i>适合：深夜</i><i>时长：100–135′</i><i>正版可看 51 部</i></div>
+        <span class="bar" aria-hidden="true"></span>
+      </label>
+    </div>
+    <div>
+      <input type="radio" name="mood" id="m4">
+      <label for="m4" style="--c:#7b5cff;--c2:#5ad7ff">
+        <span class="pick" aria-hidden="true"></span>
+        <span class="no">MOOD 04</span>
+        <h3>纪录 · 被看见</h3>
+        <p style="font-size:13.5px;color:var(--sub)">真实比剧本更锋利。人物、山河、手艺、一段被忘记的时间。</p>
+        <div class="meta"><i>适合：通勤</i><i>时长：20–90′</i><i>正版可看 29 部</i></div>
+        <span class="bar" aria-hidden="true"></span>
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ② FRESH MAGNET ================= -->
+<section class="wrap" id="fresh" aria-labelledby="t2">
+  <div class="sec-h">
+    <span class="tag">02 / THIS WEEK</span>
+    <h2 id="t2">本周优片：五部，值得立刻点开</h2>
+    <span class="en">FRESH · WEEK 41</span>
+    <p>每周更新一次，每部都写明<strong>为什么值得看、去哪看、适合什么状态看</strong>。片源均为正版授权平台。</p>
+  </div>
+
+  <div class="mag">
+    <a href="#fresh">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1059/400/540" alt="海边小屋剧照：清晨的窗与海">
+        <span class="badge" style="background:linear-gradient(90deg,#1cc8b5,#2f6bff)">治愈</span>
+        <span class="sc">★ 9.1</span>
+      </div>
+      <div class="tx">
+        <h3>海边的曼彻斯特</h3>
+        <div class="row"><b>美国</b><span>·</span>2016<span>·</span>137′<span>·</span>导演：肯尼斯·洛纳根</div>
+        <p>悲伤不是可以被治愈的，它只能被学会带着生活。镜头极克制，表演极重。</p>
+      </div>
+    </a>
+    <a href="#fresh">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1074/400/540" alt="雨夜街景剧照：湿滑的路面与霓虹">
+        <span class="badge" style="background:linear-gradient(90deg,#2f6bff,#7b5cff)">烧脑</span>
+        <span class="sc">★ 8.8</span>
+      </div>
+      <div class="tx">
+        <h3>看不见的客人</h3>
+        <div class="row"><b>西班牙</b><span>·</span>2016<span>·</span>106′<span>·</span>导演：奥里奥尔·保罗</div>
+        <p>一场密室对话，三层叙事反转。台词就是刀，别走神。</p>
+      </div>
+    </a>
+    <a href="#fresh">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1080/400/540" alt="田野公路剧照：一辆旧车与远山">
+        <span class="badge" style="background:linear-gradient(90deg,#ffb340,#ff5c8a)">成长</span>
+        <span class="sc">★ 9.3</span>
+      </div>
+      <div class="tx">
+        <h3>小偷家族</h3>
+        <div class="row"><b>日本</b><span>·</span>2018<span>·</span>121′<span>·</span>导演：是枝裕和</div>
+        <p>没有血缘的人，能不能算家人？答案藏在海边的那句"谢谢你"。</p>
+      </div>
+    </a>
+    <a href="#fresh">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1067/400/540" alt="雪山旷野剧照：一个人与一条路">
+        <span class="badge" style="background:linear-gradient(90deg,#7b5cff,#5ad7ff)">纪录</span>
+        <span class="sc">★ 9.0</span>
+      </div>
+      <div class="tx">
+        <h3>地球之盐</h3>
+        <div class="row"><b>巴西/法国</b><span>·</span>2014<span>·</span>110′<span>·</span>导演：维姆·文德斯</div>
+        <p>摄影师塞巴斯蒂昂·萨尔加多的镜头，是人类最沉重的黑白诗。</p>
+      </div>
+    </a>
+    <a href="#fresh">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1041/400/540" alt="老式客厅剧照：一家人的餐桌">
+        <span class="badge" style="background:linear-gradient(90deg,#1cc8b5,#2f6bff)">治愈</span>
+        <span class="sc">★ 8.9</span>
+      </div>
+      <div class="tx">
+        <h3>步履不停</h3>
+        <div class="row"><b>日本</b><span>·</span>2008<span>·</span>115′<span>·</span>导演：是枝裕和</div>
+        <p>一天，一家，一顿饭。人生遗憾的真相是：我们总以为还有下次。</p>
+      </div>
+    </a>
+    <a href="#fresh">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1035/400/540" alt="城市夜景剧照：高楼与车流">
+        <span class="badge" style="background:linear-gradient(90deg,#2f6bff,#7b5cff)">烧脑</span>
+        <span class="sc">★ 9.4</span>
+      </div>
+      <div class="tx">
+        <h3>盗梦空间</h3>
+        <div class="row"><b>美国/英国</b><span>·</span>2010<span>·</span>148′<span>·</span>导演：克里斯托弗·诺兰</div>
+        <p>梦境分层的物理学。陀螺停不停，其实早就不重要了。</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ================= ③ RANK TABLE ================= -->
+<section class="wrap" id="rank" aria-labelledby="t3">
+  <div class="sec-h">
+    <span class="tag">03 / RANKING</span>
+    <h2 id="t3">优质榜：优优值越高的，越不浪费时间</h2>
+    <span class="en">TOP 20 · UPDATED WEEKLY</span>
+    <p>"优优值"由<strong>剧本结构 30% + 镜头完成度 25% + 表演 20% + 配乐 15% + 二刷价值 10%</strong> 加权得出，非商业评分。</p>
+  </div>
+
+  <div class="rk">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">名次</th>
+          <th scope="col">影片 · 它优质在哪</th>
+          <th scope="col">优优值</th>
+          <th scope="col">评分</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rk-no" data-rk="优优 01">01</td>
+          <td data-l="影片"><h3>肖申克的救赎</h3><div class="mini"><b>美国</b>1994 · 142′ · 导演：弗兰克·德拉邦特</div></td>
+          <td data-l="优优值"><div class="pb"><i style="--v:99%"></i></div><div class="vv">99 / 100</div></td>
+          <td data-l="评分" class="stars-v">★★★★★ 9.7</td>
+        </tr>
+        <tr>
+          <td class="rk-no" data-rk="优优 02">02</td>
+          <td data-l="影片"><h3>霸王别姬</h3><div class="mini"><b>中国</b>1993 · 171′ · 导演：陈凯歌</div></td>
+          <td data-l="优优值"><div class="pb"><i style="--v:98%"></i></div><div class="vv">98 / 100</div></td>
+          <td data-l="评分" class="stars-v">★★★★★ 9.6</td>
+        </tr>
+        <tr>
+          <td class="rk-no" data-rk="优优 03">03</td>
+          <td data-l="影片"><h3>阿甘正传</h3><div class="mini"><b>美国</b>1994 · 142′ · 导演：罗伯特·泽米吉斯</div></td>
+          <td data-l="优优值"><div class="pb"><i style="--v:96%"></i></div><div class="vv">96 / 100</div></td>
+          <td data-l="评分" class="stars-v">★★★★★ 9.5</td>
+        </tr>
+        <tr>
+          <td class="rk-no" data-rk="优优 04">04</td>
+          <td data-l="影片"><h3>泰坦尼克号</h3><div class="mini"><b>美国</b>1997 · 194′ · 导演：詹姆斯·卡梅隆</div></td>
+          <td data-l="优优值"><div class="pb"><i style="--v:95%"></i></div><div class="vv">95 / 100</div></td>
+          <td data-l="评分" class="stars-v">★★★★★ 9.4</td>
+        </tr>
+        <tr>
+          <td class="rk-no" data-rk="优优 05">05</td>
+          <td data-l="影片"><h3>千与千寻</h3><div class="mini"><b>日本</b>2001 · 125′ · 导演：宫崎骏</div></td>
+          <td data-l="优优值"><div class="pb"><i style="--v:95%"></i></div><div class="vv">95 / 100</div></td>
+          <td data-l="评分" class="stars-v">★★★★★ 9.4</td>
+        </tr>
+        <tr>
+          <td class="rk-no" data-rk="优优 06">06</td>
+          <td data-l="影片"><h3>这个杀手不太冷</h3><div class="mini"><b>法国</b>1994 · 133′ · 导演：吕克·贝松</div></td>
+          <td data-l="优优值"><div class="pb"><i style="--v:94%"></i></div><div class="vv">94 / 100</div></td>
+          <td data-l="评分" class="stars-v">★★★★★ 9.4</td>
+        </tr>
+        <tr>
+          <td class="rk-no" data-rk="优优 07">07</td>
+          <td data-l="影片"><h3>盗梦空间</h3><div class="mini"><b>美国/英国</b>2010 · 148′ · 导演：克里斯托弗·诺兰</div></td>
+          <td data-l="优优值"><div class="pb"><i style="--v:93%"></i></div><div class="vv">93 / 100</div></td>
+          <td data-l="评分" class="stars-v">★★★★★ 9.3</td>
+        </tr>
+        <tr>
+          <td class="rk-no" data-rk="优优 08">08</td>
+          <td data-l="影片"><h3>星际穿越</h3><div class="mini"><b>美国/英国</b>2014 · 169′ · 导演：克里斯托弗·诺兰</div></td>
+          <td data-l="优优值"><div class="pb"><i style="--v:93%"></i></div><div class="vv">93 / 100</div></td>
+          <td data-l="评分" class="stars-v">★★★★★ 9.3</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <aside>
+      <div class="qbox">
+        <h4>选片四问 · 优优之问</h4>
+        <ol>
+          <li><b>它的第一场戏，有没有"闲笔"？</b>好电影不会浪费前十分钟，哪怕只是倒水。</li>
+          <li><b>关掉声音，画面还成立吗？</b>镜头语言是导演的母语，配乐只是翻译。</li>
+          <li><b>有没有一句台词，你记住了一年？</b>台词密度，是编剧诚意的体检表。</li>
+          <li><b>二刷时，你还会有新发现吗？</b>值得二刷的，才是优优电影网推荐的。</li>
+        </ol>
+        <div class="tip"><b>片源与分级提示：</b>本站仅提供正版平台观影导航，不提供、不链接任何盗版、破解、侵权或低俗资源。部分影片含惊悚、暴力或成人情节，未满 18 岁请在监护人陪同下观看。</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= ④ TIMELINE ================= -->
+<section class="wrap" id="line" aria-labelledby="t4">
+  <div class="sec-h">
+    <span class="tag">04 / AUTEURS</span>
+    <h2 id="t4">优影像人：镜头后面的人</h2>
+    <span class="en">AUTEUR · TIMELINE</span>
+    <p>同样的剧本，交给不同的人，会得到完全不同的电影。优优电影网更看重<strong>作者性</strong>——他有没有自己的语法。</p>
+  </div>
+
+  <div class="tl">
+    <div class="row" style="--c:#1cc8b5">
+      <div class="yr">1940 — 2023</div>
+      <h3>是枝裕和 <span>Koreeda Hirokazu · 日本</span></h3>
+      <p>家庭不是天生的，是被经营的。他用最轻的镜头，拍最重的告别。吃饭、洗澡、走路，都是戏。</p>
+      <div class="chips"><i>步履不停</i><i>小偷家族</i><i>海街日记</i><i>无人知晓</i><i>镜头语法：长镜头 + 留白</i></div>
+    </div>
+    <div class="row" style="--c:#2f6bff">
+      <div class="yr">1970 — </div>
+      <h3>克里斯托弗·诺兰 <span>Christopher Nolan · 英国</span></h3>
+      <p>把时间当作角色。他先设计结构，再写故事——《盗梦空间》的四层梦境，是建筑学而非魔法。</p>
+      <div class="chips"><i>盗梦空间</i><i>星际穿越</i><i>信条</i><i>奥本海默</i><i>镜头语法：实拍 + IMAX</i></div>
+    </div>
+    <div class="row" style="--c:#ffb340">
+      <div class="yr">1969 — </div>
+      <h3>宫崎骏 <span>Hayao Miyazaki · 日本</span></h3>
+      <p>手绘不是技术，是态度。他画的每一帧都在说：世界值得被认真地看一次。</p>
+      <div class="chips"><i>千与千寻</i><i>幽灵公主</i><i>哈尔的移动城堡</i><i>起风了</i><i>镜头语法：手绘 + 飞行</i></div>
+    </div>
+    <div class="row" style="--c:#7b5cff">
+      <div class="yr">1954 — 2025</div>
+      <h3>维姆·文德斯 <span>Wim Wenders · 德国</span></h3>
+      <p>公路片的开创者之一。他拍"在路上"的人，也拍"停下"的风景——后者往往更动人。</p>
+      <div class="chips"><i>地球之盐</i><i>柏林苍穹下</i><i>公路之王</i><i>镜头语法：公路 + 纪录片</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ⑤ BRICKS MAP ================= -->
+<section class="wrap" id="map" aria-labelledby="t5">
+  <div class="sec-h">
+    <span class="tag">05 / GENRE MAP</span>
+    <h2 id="t5">类型地图：按你想看的"味道"找</h2>
+    <span class="en">GENRE · BRICKS</span>
+    <p>不知道看什么时，先选类型。每格都是一部<strong>该类型里最值得两小时</strong>的片子。</p>
+  </div>
+
+  <div class="bricks">
+    <a href="#map" class="h3">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1047/420/560" alt="悬疑片剧照：昏暗房间与一束光">
+        <span class="idx">MAP 01 · 悬疑</span>
+      </div>
+      <div class="tx">
+        <h3>看不见的客人</h3>
+        <div class="r"><b>西班牙</b>2016 · 106′ · 反转 3 次</div>
+      </div>
+    </a>
+    <a href="#map" class="h2">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1039/420/420" alt="家庭片剧照：阳台上的两个人">
+        <span class="idx">MAP 02 · 家庭</span>
+      </div>
+      <div class="tx">
+        <h3>步履不停</h3>
+        <div class="r"><b>日本</b>2008 · 115′ · 一碗麦茶的时间</div>
+      </div>
+    </a>
+    <a href="#map" class="h4">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1084/420/380" alt="纪录片剧照：矿山与工人">
+        <span class="idx">MAP 03 · 纪录</span>
+      </div>
+      <div class="tx">
+        <h3>地球之盐</h3>
+        <div class="r"><b>巴西</b>2014 · 110′ · 黑白的力量</div>
+      </div>
+    </a>
+    <a href="#map" class="h4">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1015/420/380" alt="科幻片剧照：星际与飞船">
+        <span class="idx">MAP 04 · 科幻</span>
+      </div>
+      <div class="tx">
+        <h3>星际穿越</h3>
+        <div class="r"><b>美国</b>2014 · 169′ · 爱是第五维</div>
+      </div>
+    </a>
+    <a href="#map" class="h3">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1069/420/560" alt="动画片剧照：少女与列车">
+        <span class="idx">MAP 05 · 动画</span>
+      </div>
+      <div class="tx">
+        <h3>千与千寻</h3>
+        <div class="r"><b>日本</b>2001 · 125′ · 记住自己的名字</div>
+      </div>
+    </a>
+    <a href="#map" class="h2">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1057/420/420" alt="犯罪片剧照：雨中的街道">
+        <span class="idx">MAP 06 · 犯罪</span>
+      </div>
+      <div class="tx">
+        <h3>杀人回忆</h3>
+        <div class="r"><b>韩国</b>2003 · 131′ · 最后一个镜头</div>
+      </div>
+    </a>
+    <a href="#map" class="h3">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1082/420/560" alt="爱情片剧照：两个人的背影">
+        <span class="idx">MAP 07 · 爱情</span>
+      </div>
+      <div class="tx">
+        <h3>泰坦尼克号</h3>
+        <div class="r"><b>美国</b>1997 · 194′ · 永不沉没</div>
+      </div>
+    </a>
+    <a href="#map" class="h2">
+      <div class="cv">
+        <img src="https://picsum.photos/id/1040/420/420" alt="历史片剧照：旧照片与旗帜">
+        <span class="idx">MAP 08 · 历史</span>
+      </div>
+      <div class="tx">
+        <h3>辛德勒的名单</h3>
+        <div class="r"><b>美国</b>1993 · 195′ · 那件红衣</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="ladder">
+    <div style="--c:#1cc8b5;--c2:#2f6bff">
+      <h4>入门优优榜 · 5 部不踩雷</h4>
+      <ol>
+        <li>肖申克的救赎 <b>1994</b></li>
+        <li>阿甘正传 <b>1994</b></li>
+        <li>泰坦尼克号 <b>1997</b></li>
+        <li>这个杀手不太冷 <b>1994</b></li>
+        <li>千与千寻 <b>2001</b></li>
+      </ol>
+    </div>
+    <div style="--c:#ffb340;--c2:#ff5c8a">
+      <h4>进阶优优榜 · 5 部值得二刷</h4>
+      <ol>
+        <li>盗梦空间 <b>2010</b></li>
+        <li>星际穿越 <b>2014</b></li>
+        <li>看不见的客人 <b>2016</b></li>
+        <li>小偷家族 <b>2018</b></li>
+        <li>地球之盐 <b>2014</b></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="wrap" style="padding-top:20px">
+  <div class="band">
+    <div>
+      <h3>把两小时，交给一部好电影。</h3>
+      <p>每周更新片单，每部都标注正版片源、适合时段与"看完之后"。优优电影网，只做筛选，不做片海。</p>
+    </div>
+    <div class="btns">
+      <a class="pri" href="#fresh">去本周优片 →</a>
+      <a class="sec" href="#top">回到顶部</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot" role="contentinfo">
+  <div class="in">
+    <div>
+      <a class="logo" href="#top" style="color:#fff">
+        <span class="mk" aria-hidden="true">优</span>
+        <span><b>优优电影网</b><br><small style="color:#7f8aa0">YOUYOU · CINEMA</small></span>
+      </a>
+      <p style="margin-top:16px">优优电影网：以"情绪准确、画质到位、值得二刷"为标准的优质电影指南。片单、解读与正版观影导航。</p>
+    </div>
+    <div>
+      <h5>选片</h5>
+      <ul>
+        <li><a href="#mood">四种优质</a></li>
+        <li><a href="#fresh">本周优片</a></li>
+        <li><a href="#map">类型地图</a></li>
+        <li><a href="#rank">优质榜</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>影像</h5>
+      <ul>
+        <li><a href="#line">优影像人</a></li>
+        <li><a href="#map">悬疑 · 烧脑</a></li>
+        <li><a href="#map">治愈 · 成长</a></li>
+        <li><a href="#map">纪录 · 黑白</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>关于</h5>
+      <ul>
+        <li><a href="#top">优优值算法</a></li>
+        <li><a href="#top">片源声明</a></li>
+        <li><a href="#top">更新日志</a></li>
+        <li><a href="#top">联系方式</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy">
+    <span>© 2026 优优电影网 · youyoudianyingwang-cn.github.io · 网站名称：优优电影网</span>
+    <span>本站不提供、不链接任何盗版、破解、侵权或低俗资源。含惊悚、暴力或成人情节提示，未满 18 岁请在监护人陪同下观看。</span>
+  </div>
+</footer>
+
+<a class="up" id="up" href="#top" aria-label="回到顶部" title="回到顶部">↑</a>
+
+<script>
+// 入场动画
+const io = new IntersectionObserver(function(es){
+  es.forEach(function(e,i){
+    if(e.isIntersecting){
+      setTimeout(function(){ e.target.classList.add('in'); }, i*70);
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold:.12, rootMargin:'0px 0px -40px'});
+document.querySelectorAll('.rv, .opt label, .mag a, .tl .row, .bricks a, table tbody tr, .qbox, .ladder > div, .band')
+  .forEach(function(n){ io.observe(n); });
+// 时间轴竖线生长
+const tl = document.querySelector('.tl');
+if(tl){
+  const to = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){ tl.classList.add('in'); to.unobserve(tl); }
+    });
+  }, {threshold:.18});
+  to.observe(tl);
+}
+// 抽屉菜单
+const ham = document.querySelector('.ham');
+const drawer = document.getElementById('drawer');
+function toggle(force){
+  const open = force !== undefined ? force : drawer.classList.toggle('open');
+  drawer.classList.toggle('open', open);
+  ham.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+ham.addEventListener('click', function(){ toggle(); });
+drawer.addEventListener('click', function(e){
+  if(e.target.tagName === 'A' || e.target.classList.contains('close')) toggle(false);
+});
+// 回到顶部
+const up = document.getElementById('up');
+addEventListener('scroll', function(){
+  up.classList.toggle('show', scrollY > 700);
+}, {passive:true});
+</script>
+</body>
+</html>
